@@ -1,0 +1,10 @@
+version: "3.0"
+services:
+  jdmode:
+    image: mixool/jdmode
+    container_name: mimotion
+    restart: always
+    environment: 
+     - NOTHING=1111111111111111111111111111111111111111111111111111111111111111111111111111111111
+     - par_mimotion='18812345678@password@10000-20000 19912345678@password@2000-3000'
+     - CUSTOM_SHELL_FILE=https://raw.githubusercontent.com/mixool/jdmode/main/mimotion/mimotion.sh

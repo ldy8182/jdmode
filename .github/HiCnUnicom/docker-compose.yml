@@ -1,0 +1,10 @@
+version: "3.0"
+services:
+  jdmode:
+    image: mixool/jdmode
+    container_name: hcu
+    restart: always
+    environment: 
+     - NOTHING=1111111111111111111111111111111111111111111111111111111111111111111111111111111111
+     - par_hcu='membercenter 13012345678@123456 appId@2a834d71bd261a5e0aaf6ab3342de851fbbae8a633fbadd722888'
+     - CUSTOM_SHELL_FILE=https://raw.githubusercontent.com/mixool/jdmode/main/HiCnUnicom/HiCnUnicom.sh

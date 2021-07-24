@@ -34,7 +34,7 @@ function getcknode(){
     # 生成cknode命令
     cat <<'EOF' >/usr/local/bin/cknode && chmod +x /usr/local/bin/cknode
 #!/bin/sh
-### cknode 1@1-12 /jd/scripts/city.js  # 参数一的@说明：进程数 1 或者 2以上 (表示有多少ck就并发多少进程) @ 自己CK起止位: all 表示全部 5-3 时表示不加入 2-2 时表示仅加入第二个
+### cknode 1@1-12 /jd/scripts/city.js  # 参数一的@说明：进程数 1 或者 2以上 (表示有多少ck就并发多少进程) @ 自己CK起止位: 99999 表示全部 5-3 时表示不加入 2-2 时表示仅加入第二个
 
 TMPFILE=$(mktemp) && trap 'rm -f "${TMPFILE}*"' EXIT || exit 1
 touch /jd/config/config.sh
@@ -83,7 +83,7 @@ fi
 vartwo="/jd/scripts/$filename"
 
 # 生成CK列表
-if [[ "$varone_b" != "all" ]]; then
+if [[ "$varone_b" != "99999" ]]; then
     [[ $varone_b_one -ge 0 && $varone_b_two -ge 0 ]] || { echo $varone 参数错误; exit 1; }
     [[ $varone_b_two -ge $varone_b_one ]] && grep -oE "pt_key=.+;pt_pin=[^(\"|\;)]+" $config_sh_file | sed "s/$/&\;/g" | sed -n "${varone_b_one},${varone_b_two}p" >$TMPFILE
 else
@@ -154,15 +154,15 @@ function author_raws(){
 
 function cronlist_a(){
     # 添加基础仓库任务,替换运行命令为 cknode
-    grep -oE "(^[^#].*\ node\ .*\.js|^#[^\>]*)" /jd/scripts/docker/crontab_list.sh | sed "s/\ node\ \/scripts/\ cknode 1@all\ \/jd\/scripts/g" >/jd/config/cronlist
+    grep -oE "(^[^#].*\ node\ .*\.js|^#[^\>]*)" /jd/scripts/docker/crontab_list.sh | sed "s/\ node\ \/scripts/\ cknode 1@99999\ \/jd\/scripts/g" >/jd/config/cronlist
     # 添加仓库作者 cdle 任务
     cat <<'EOF' >>/jd/config/cronlist
-0 0 * * * cknode 1@all /jd/scripts/jd_cdle_angryBean.js
-0 0 * * * cknode 1@all /jd/scripts/jd_cdle_earn30.js
-0 0 * * * cknode 1@all /jd/scripts/jd_cdle_dyj.js
-0 0 * * * cknode 1@all /jd/scripts/jd_cdle_angryCash.js
-0 0 * * * cknode 1@all /jd/scripts/jd_cdle_angryKoi.js
-0 0 * * * cknode 1@all /jd/scripts/jd_cdle_cash_exchange.js
+0 0 * * * cknode 1@99999 /jd/scripts/jd_cdle_angryBean.js
+0 0 * * * cknode 1@99999 /jd/scripts/jd_cdle_earn30.js
+0 0 * * * cknode 1@99999 /jd/scripts/jd_cdle_dyj.js
+0 0 * * * cknode 1@99999 /jd/scripts/jd_cdle_angryCash.js
+0 0 * * * cknode 1@99999 /jd/scripts/jd_cdle_angryKoi.js
+0 0 * * * cknode 1@99999 /jd/scripts/jd_cdle_cash_exchange.js
 EOF
     # 添加默认任务
     cat <<'EOF' >>/jd/config/cronlist

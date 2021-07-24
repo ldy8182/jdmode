@@ -28,7 +28,7 @@ docker exec -it jdmode /bin/sh
 docker exec -it jdmode /bin/sh -c 'crontab -l'
 docker exec -it jdmode /bin/sh -c 'node /jd/scripts/getJDCookie.js'
 docker exec -it jdmode /bin/sh -c 'docker_entrypoint.sh'
-docker exec -it jdmode /bin/sh -c 'node /jd/scripts/jd_bean_change.js'
+docker exec -it jdmode /bin/sh -c 'cknode 1@all /jd/scripts/jd_bean_change.js'
 cd /jdmode && docker-compose restart jdmode
 ```
   

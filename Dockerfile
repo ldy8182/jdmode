@@ -4,7 +4,7 @@ ENV JD_DIR=/jd
 ENV CUSTOM_SHELL_FILE=https://gist.githubusercontent.com/mixool/dbbb7614f2ec7fd14ff3d424bfe30266/raw
 
 RUN apk update \
-    && apk add --no-cache bash curl wget unzip grep tzdata git coreutils moreutils openssl jq openssh-client python3 py3-pip \
+    && apk add --no-cache bash curl wget unzip grep tzdata git coreutils moreutils openssl jq openssh-client python3 py3-pip caddy \
     && npm install pm2@latest -g \
     && pip install Telethon \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
